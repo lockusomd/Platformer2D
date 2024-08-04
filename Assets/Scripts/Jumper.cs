@@ -12,7 +12,7 @@ public class Jumper : MonoBehaviour
     {
         if (_isJump)
         {
-            _rigidbody.AddForce(Vector2.up * _force);
+            _rigidbody.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
             _isGround = false;
             _isJump = false;
         }
