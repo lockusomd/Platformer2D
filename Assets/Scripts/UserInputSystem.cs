@@ -7,6 +7,8 @@ public class UserInputSystem : MonoBehaviour
     [SerializeField] private Mover _mover;
     [SerializeField] private Jumper _jumper;
 
+    private float _direction;
+
     private void Update()
     {
         InputX();
@@ -15,16 +17,14 @@ public class UserInputSystem : MonoBehaviour
 
     private void InputX()
     {
-        float direction = Input.GetAxis("Horizontal");
+        _direction = Input.GetAxis("Horizontal");
 
-        _mover.SetDirection(direction);
+        _mover.SetDirection(_direction);
     }
 
     private void InputY()
     {
-        float force = Input.GetAxis("Vertical");
-
-        if (force > 0)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             _jumper.Jump();
         }
