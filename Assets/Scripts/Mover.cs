@@ -4,16 +4,11 @@ public class Mover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private Rotator _rotator;
 
-    private float _direction = 0f;
-
-    private void FixedUpdate()
+    public void Move(float direction)
     {
-        _rigidbody.velocity = new Vector2(_direction * _speed * Time.fixedDeltaTime, _rigidbody.velocity.y);        
-    }
-
-    public void SetDirection(float direction)
-    {
-        _direction = direction;
+        _rigidbody.velocity = new Vector2(direction * _speed * Time.fixedDeltaTime, _rigidbody.velocity.y);
+        _rotator.Rotate(direction);
     }
 }

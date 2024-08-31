@@ -4,6 +4,7 @@ public class EnemyMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Transform[] _checkPoints;
+    [SerializeField] private Rotator _rotator;
 
     private int _indexPoint = 0;
 
@@ -20,5 +21,6 @@ public class EnemyMover : MonoBehaviour
     private void SetNextPoint()
     {
         _indexPoint = ++_indexPoint % _checkPoints.Length;
+        _rotator.Rotate(transform.position.x - _checkPoints[_indexPoint].position.x);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GroundChecker : MonoBehaviour
+public class GroundDetector : MonoBehaviour
 {
     private bool _isGround = false;
 

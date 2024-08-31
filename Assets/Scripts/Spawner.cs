@@ -8,7 +8,6 @@ public class Spawner : MonoBehaviour
 
     private ObjectPool<Rocket> _pool;
 
-    private int _rocketsQuantity = 0;
     private int _defaultCapacity = 5;
     private int _maxSize = 10;
     private int _repeatRate = 5;
@@ -16,29 +15,18 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         _pool = new ObjectPool<Rocket>(
-        createFunc: () => Instantiate(_prefab),
-        actionOnGet: (rocket) => SetParameters(rocket),
-        actionOnRelease: (rocket) => rocket.gameObject.SetActive(false),
-        actionOnDestroy: (rocket) => Delete(rocket),
-        collectionCheck: true,
-        defaultCapacity: _defaultCapacity,
-        maxSize: _maxSize);
+            createFunc: () => Instantiate(_prefab),
+            actionOnGet: (rocket) => SetParameters(rocket),
+            actionOnRelease: (rocket) => rocket.gameObject.SetActive(false),
+            actionOnDestroy: (rocket) => Delete(rocket),
+            collectionCheck: true,
+            defaultCapacity: _defaultCapacity,
+            maxSize: _maxSize);
     }
 
     private void Start()
     {
         _pool.Get();
-
-        _rocketsQuantity++;
-    }
-
-    private void Update()
-    {
-        if (_rocketsQuantity == 0)
-        {
-            StartCoroutine(GetRocket());
-            _rocketsQuantity++;
-        }
     }
 
     private IEnumerator GetRocket()
@@ -61,9 +49,11 @@ public class Spawner : MonoBehaviour
 
     private void SendToPool(Rocket rocket)
     {
+        rocket.Died -= SendToPool;
+
         _pool.Release(rocket);
 
-        _rocketsQuantity--;
+        StartCoroutine(GetRocket());
     }
 
     private void Delete(Rocket rocket)
