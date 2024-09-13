@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2551896581995716012}
   - component: {fileID: 9198627884596177528}
   m_Layer: 0
-  m_Name: RocketSpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

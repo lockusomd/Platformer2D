@@ -4,9 +4,9 @@ public class Toucher : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Rocket>(out Rocket component))
+        if (collision.gameObject.TryGetComponent<Appearer>(out Appearer component))
         {
-            component.RocketDied();
+            component.AppearerDied();
         }
     }
 }

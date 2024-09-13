@@ -4,23 +4,24 @@ public class UserInput : MonoBehaviour
 {
     public const string Horizontal = nameof(Horizontal);
     public const KeyCode Jump = KeyCode.Space;
+    public const KeyCode Attack = KeyCode.Q;
 
-    [SerializeField] private Mover _mover;
-    [SerializeField] private Jumper _jumper;
-
-    private float _direction;
-    private bool _isJump;
-
-    public float Direction => _direction;
-    public bool IsJump => _isJump;
+    public float Direction { get; private set; }
+    public bool IsJump { get; private set; }
+    public bool IsAttack { get; private set; }
 
     private void Update()
     {
-        _direction = Input.GetAxis(Horizontal);
+        Direction = Input.GetAxis(Horizontal);
 
         if (Input.GetKeyDown(Jump))
-            _isJump = true;
+            IsJump = true;
         else
-            _isJump = false;
+            IsJump = false;
+
+        if (Input.GetKeyDown(Attack))
+            IsAttack = true;
+        else
+            IsAttack = false;
     }
 }

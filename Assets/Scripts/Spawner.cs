@@ -4,21 +4,21 @@ using UnityEngine.Pool;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Rocket _prefab;
+    [SerializeField] private Appearer _prefab;
 
-    private ObjectPool<Rocket> _pool;
+    private ObjectPool<Appearer> _pool;
 
     private int _defaultCapacity = 5;
     private int _maxSize = 10;
-    private int _repeatRate = 5;
+    private WaitForSeconds _waitForSeconds = new WaitForSeconds(5);
 
     private void Awake()
     {
-        _pool = new ObjectPool<Rocket>(
+        _pool = new ObjectPool<Appearer>(
             createFunc: () => Instantiate(_prefab),
-            actionOnGet: (rocket) => SetParameters(rocket),
-            actionOnRelease: (rocket) => rocket.gameObject.SetActive(false),
-            actionOnDestroy: (rocket) => Delete(rocket),
+            actionOnGet: (appearer) => SetParameters(appearer),
+            actionOnRelease: (appearer) => appearer.gameObject.SetActive(false),
+            actionOnDestroy: (appearer) => Delete(appearer),
             collectionCheck: true,
             defaultCapacity: _defaultCapacity,
             maxSize: _maxSize);
@@ -29,34 +29,32 @@ public class Spawner : MonoBehaviour
         _pool.Get();
     }
 
-    private IEnumerator GetRocket()
+    private IEnumerator GetAppearer()
     {
-        var wait = new WaitForSeconds(_repeatRate);
-
-        yield return wait;
+        yield return _waitForSeconds;
 
         _pool.Get();
     }
 
-    private void SetParameters(Rocket rocket)
+    private void SetParameters(Appearer appearer)
     {
-        rocket.Died += SendToPool;
+        appearer.Died += SendToPool;
 
-        rocket.transform.position = transform.position;
+        appearer.transform.position = transform.position;
 
-        rocket.gameObject.SetActive(true);
+        appearer.gameObject.SetActive(true);
     }
 
-    private void SendToPool(Rocket rocket)
+    private void SendToPool(Appearer appearer)
     {
-        rocket.Died -= SendToPool;
+        appearer.Died -= SendToPool;
 
-        _pool.Release(rocket);
+        _pool.Release(appearer);
 
-        StartCoroutine(GetRocket());
+        StartCoroutine(GetAppearer());
     }
 
-    private void Delete(Rocket rocket)
+    private void Delete(Appearer rocket)
     {
         rocket.Died -= SendToPool;
 
