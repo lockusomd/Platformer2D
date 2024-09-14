@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour
@@ -7,17 +8,23 @@ public class Teleporter : MonoBehaviour
     const float MinY = -15f;
     const float MaxY = 15f;
 
-    private void Awake()
+    private void Start()
     {
-        ChangePosition();
+        StartCoroutine(ChangePosition());
     }
 
-    public void ChangePosition()
+    private IEnumerator ChangePosition()
     {
-        transform.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
+        bool isWork = true;
+
+        while(isWork)
+        {
+            transform.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
+
+            yield return new WaitForSeconds(5);
+        }
     }
 
-    // Не срабатывает триггер на компонент Ground
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Ground component))

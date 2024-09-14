@@ -9,26 +9,26 @@ public class Damager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Victim>(out Victim victim))
+        if (collision.gameObject.TryGetComponent(out Health target))
         {
-            _coroutine = StartCoroutine(Attacks(victim));
+            _coroutine = StartCoroutine(Attacks(target));
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Victim>(out Victim victim))
+        if (collision.gameObject.TryGetComponent<Health>(out _))
         {
             StopCoroutine(_coroutine);
         }
     }
 
-    private void Attack(Victim target)
+    private void Attack(Health target)
     {
         target.TakeDamage(_power);
     }
 
-    private IEnumerator Attacks(Victim target)
+    private IEnumerator Attacks(Health target)
     {
         bool isWork = true;
 

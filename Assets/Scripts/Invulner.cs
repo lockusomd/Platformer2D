@@ -5,16 +5,14 @@ public class Invulner : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
 
-    private bool _isInvulnerability = false;
-
-    public bool IsInvulnerability => _isInvulnerability;
+    public bool IsInvulnerability { get; private set; }
 
     private IEnumerator Invulnerability()
     {
         int blinkTimes = 5;
         float oneBlink = 0.4f;
 
-        _isInvulnerability = true;
+        IsInvulnerability = true;
 
         for (int i = 0; i < blinkTimes; i++)
         {
@@ -27,7 +25,7 @@ public class Invulner : MonoBehaviour
             yield return new WaitForSeconds(oneBlink / 2);
         }
 
-        _isInvulnerability = false;
+        IsInvulnerability = false;
     }
 
     public void EnableInvulnerability()

@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Healer : MonoBehaviour
 {
-    [SerializeField] private Victim _victim;
+    [SerializeField] private Health _health;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Aid>(out Aid component))
+        if (collision.gameObject.TryGetComponent(out Aid component))
         {
-            _victim.Heal(component.Health);
+            _health.Heal(component.Health);
         }
     }
 }

@@ -14,14 +14,8 @@ public class UserInput : MonoBehaviour
     {
         Direction = Input.GetAxis(Horizontal);
 
-        if (Input.GetKeyDown(Jump))
-            IsJump = true;
-        else
-            IsJump = false;
+        IsJump = Input.GetKeyDown(Jump);
 
-        if (Input.GetKeyDown(Attack))
-            IsAttack = true;
-        else
-            IsAttack = false;
+        IsAttack = Input.GetKeyDown(Attack);
     }
 }
