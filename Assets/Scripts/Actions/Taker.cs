@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Toucher : MonoBehaviour
+public class Taker : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {

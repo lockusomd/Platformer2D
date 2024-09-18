@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    const float MinX = -26f;
-    const float MaxX = 26f;
-    const float MinY = -15f;
-    const float MaxY = 15f;
+    [SerializeField] private Transform[] _aidPoints;
 
     private void Awake()
     {
@@ -16,23 +13,18 @@ public class Teleporter : MonoBehaviour
     private IEnumerator ChangePosition()
     {
         bool isWork = true;
+        WaitForSeconds delay = new WaitForSeconds(5);
 
         while (isWork)
         {
             Teleport();
 
-            yield return new WaitForSeconds(5);
+            yield return delay;
         }
     }
 
     private void Teleport()
     {
-        transform.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Ground component))
-            Teleport();
+        transform.position = _aidPoints[Random.Range(0, _aidPoints.Length)].position;
     }
 }

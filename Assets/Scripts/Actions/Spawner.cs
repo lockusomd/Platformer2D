@@ -54,10 +54,10 @@ public class Spawner : MonoBehaviour
         StartCoroutine(GetAppearer());
     }
 
-    private void Delete(Appearer rocket)
+    private void Delete(Appearer appearer)
     {
-        rocket.Died -= SendToPool;
+        appearer.Died -= SendToPool;
 
-        Destroy(rocket);
+        Destroy(appearer);
     }
 }

@@ -24,7 +24,5 @@ public class Health : MonoBehaviour
     {
         if (healPoints > 0)
             _health = Mathf.Clamp(_health + healPoints, _minHealth, _maxHealth);
-
-        Debug.Log(healPoints);
     }
 }
