@@ -324,7 +324,8 @@ GameObject:
   - component: {fileID: 362463746}
   - component: {fileID: 362463741}
   - component: {fileID: 362463756}
-  - component: {fileID: 362463752}
+  - component: {fileID: 362463758}
+  - component: {fileID: 362463757}
   - component: {fileID: 362463755}
   - component: {fileID: 362463750}
   - component: {fileID: 362463743}
@@ -613,19 +614,6 @@ MonoBehaviour:
   _jumper: {fileID: 362463744}
   _attacker: {fileID: 362463753}
   _groundDetector: {fileID: 1431438747}
---- !u!114 &362463752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362463737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7405a92ec9da043d3830c5a155bfb093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _renderer: {fileID: 362463738}
 --- !u!114 &362463753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,8 +652,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b6cfdbeca724cbcafafc652fecf922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invulner: {fileID: 362463752}
+  _invulner: {fileID: 362463758}
+  _minHealth: 0
+  _maxHealth: 100
   _health: 100
+--- !u!114 &362463757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362463737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ba768c08c79420c931ba4e687d6177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 362463738}
+  _oneBlinkDuration: 0.4
+--- !u!114 &362463758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362463737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7405a92ec9da043d3830c5a155bfb093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blinker: {fileID: 362463757}
+  _duration: 5
 --- !u!1 &496361515
 GameObject:
   m_ObjectHideFlags: 0

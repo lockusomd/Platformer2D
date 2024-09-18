@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 1599683304269920268}
   - component: {fileID: 5270399462962083009}
   - component: {fileID: 4751714041601068251}
+  - component: {fileID: 2817944118517180168}
   - component: {fileID: 3755476171460003123}
   - component: {fileID: 1018410868573086011}
   - component: {fileID: 2574864709221919156}
@@ -300,7 +301,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7405a92ec9da043d3830c5a155bfb093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blinker: {fileID: 2817944118517180168}
+  _duration: 5
+--- !u!114 &2817944118517180168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471672192178923778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ba768c08c79420c931ba4e687d6177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _renderer: {fileID: 3020839426881675858}
+  _oneBlinkDuration: 0.4
 --- !u!114 &3755476171460003123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invulner: {fileID: 4751714041601068251}
+  _minHealth: 0
+  _maxHealth: 100
   _health: 50
 --- !u!114 &1018410868573086011
 MonoBehaviour:
@@ -355,9 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _checkPoints:
-  - {fileID: 7724954579380938155}
-  - {fileID: 5803155192956605744}
+  _wayPoints: []
   _rotator: {fileID: 2366874570428105272}
   _target: {fileID: 7724954579380938155}
 --- !u!114 &2366874570428105272

@@ -8,7 +8,7 @@ public class Teleporter : MonoBehaviour
     const float MinY = -15f;
     const float MaxY = 15f;
 
-    private void Start()
+    private void Awake()
     {
         StartCoroutine(ChangePosition());
     }
@@ -17,17 +17,22 @@ public class Teleporter : MonoBehaviour
     {
         bool isWork = true;
 
-        while(isWork)
+        while (isWork)
         {
-            transform.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
+            Teleport();
 
             yield return new WaitForSeconds(5);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Teleport()
+    {
+        transform.position = new Vector2(Random.Range(MinX, MaxX), Random.Range(MinY, MaxY));
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Ground component))
-            Debug.Log(true);
+            Teleport();
     }
 }
