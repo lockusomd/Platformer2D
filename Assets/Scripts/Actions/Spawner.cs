@@ -58,6 +58,6 @@ public class Spawner : MonoBehaviour
     {
         appearer.Died -= SendToPool;
 
-        Destroy(appearer);
+        Destroy(appearer.gameObject);
     }
 }

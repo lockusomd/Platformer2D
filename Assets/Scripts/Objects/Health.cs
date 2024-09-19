@@ -3,9 +3,9 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private Invulner _invulner;
-    [SerializeField] private int _minHealth = 0;
-    [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private int _health;
+    [SerializeField] private int _minQuantity = 0;
+    [SerializeField] private int _maxQuantity = 100;
+    [SerializeField] private int _quantity;
 
     public void TakeDamage(int damage)
     {
@@ -13,16 +13,16 @@ public class Health : MonoBehaviour
         {
             if (_invulner.IsInvulnerability == false)
             {
-                _health = Mathf.Clamp(_health - damage, _minHealth, _maxHealth);
+                _quantity = Mathf.Clamp(_quantity - damage, _minQuantity, _maxQuantity);
 
                 _invulner.EnableInvulnerability();
             }
         }
     }
 
-    public void Heal(int healPoints)
+    public void Recovery(int healPoints)
     {
         if (healPoints > 0)
-            _health = Mathf.Clamp(_health + healPoints, _minHealth, _maxHealth);
+            _quantity = Mathf.Clamp(_quantity + healPoints, _minQuantity, _maxQuantity);
     }
 }

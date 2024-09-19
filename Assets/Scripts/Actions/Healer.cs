@@ -8,7 +8,7 @@ public class Healer : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Aid component))
         {
-            _health.Heal(component.Health);
+            _health.Recovery(component.Health);
         }
     }
 }

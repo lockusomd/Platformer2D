@@ -17,12 +17,6 @@ public class EnemyMover : MonoBehaviour
             SetNextPoint();
     }
 
-    private void SetNextPoint()
-    {
-        _indexPoint = ++_indexPoint % _wayPoints.Length;
-        SetTarget(_wayPoints[_indexPoint]);
-    }
-
     public void SetTarget(Transform target)
     {
         _target = target;
@@ -32,5 +26,11 @@ public class EnemyMover : MonoBehaviour
     public void Patrol()
     {
         SetNextPoint();
+    }
+
+    private void SetNextPoint()
+    {
+        _indexPoint = ++_indexPoint % _wayPoints.Length;
+        SetTarget(_wayPoints[_indexPoint]);
     }
 }
