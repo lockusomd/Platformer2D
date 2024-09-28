@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Invulner : MonoBehaviour
 {
-    [SerializeField] private Blinker _blinker;
     [SerializeField] private float _duration = 5f;
+
+    public float Duration => _duration;
 
     private WaitForSeconds _wait;
 
@@ -18,8 +19,6 @@ public class Invulner : MonoBehaviour
     private IEnumerator Invulnerability()
     {
         IsInvulnerability = true;
-
-        _blinker.StartBlink(_duration);
 
         yield return _wait;
 

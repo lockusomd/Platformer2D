@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Attacker : MonoBehaviour
@@ -7,38 +6,21 @@ public class Attacker : MonoBehaviour
     [SerializeField] private GroundDetector _groundDetector;
     [SerializeField] private Damager _damager;
 
-    private WaitForSeconds _duration = new WaitForSeconds(1);
-
-    private bool _isAttack = false;
+    public bool IsAttack { get; private set; } = false;
 
     private void Update()
     {
         if (_userInput.IsAttack && _groundDetector.IsGround)
-            _isAttack = true;
+            IsAttack = true;
     }
 
     private void FixedUpdate()
     {
-        if (_isAttack)
+        if (IsAttack)
         {
-            EnableAttack();
+            _damager.Attack();
 
-            _isAttack = false;
+            IsAttack = false;
         }
-    }
-
-    private IEnumerator Attack()
-    {
-        _damager.gameObject.SetActive(false);
-        _damager.gameObject.SetActive(true);
-
-        yield return _duration;
-
-        _damager.gameObject.SetActive(false);
-    }
-
-    public void EnableAttack()
-    {
-        StartCoroutine(Attack());
     }
 }

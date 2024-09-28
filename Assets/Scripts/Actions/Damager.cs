@@ -1,42 +1,39 @@
-using System.Collections;
 using UnityEngine;
 
 public class Damager : MonoBehaviour
 {
+    [SerializeField] private LayerMask _detectionLayer;
     [SerializeField] private int _power;
+    [SerializeField] private float _detectionRadius = 1.0f;
+    [SerializeField] private float _offsetDistance = 1.0f;
 
-    private Coroutine _coroutine;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Attack()
     {
-        if (collision.gameObject.TryGetComponent(out Health target))
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(GetPosition(), _detectionRadius, _detectionLayer);
+
+        if (hitColliders.Length > 0)
         {
-            _coroutine = StartCoroutine(Attacks(target));
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.TryGetComponent(out Health target))
+                {
+                    target.TakeDamage(_power);
+                }
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnDrawGizmosSelected()
     {
-        if (collision.gameObject.TryGetComponent<Health>(out _))
-        {
-            StopCoroutine(_coroutine);
-        }
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(GetPosition(), _detectionRadius);
     }
 
-    private void Attack(Health target)
+    private Vector2 GetPosition()
     {
-        target.TakeDamage(_power);
-    }
+        Vector2 position = transform.position + transform.right * _offsetDistance;
 
-    private IEnumerator Attacks(Health target)
-    {
-        bool isWork = true;
-
-        while(isWork)
-        {
-            Attack(target);
-
-            yield return new WaitForSeconds(3);
-        }
+        return position;
     }
 }

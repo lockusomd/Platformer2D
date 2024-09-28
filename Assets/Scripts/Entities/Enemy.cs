@@ -3,15 +3,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyMover _enemyMover;
-    [SerializeField] private Chaser _chaser;
+    [SerializeField] private TargetDetector _targetDetector;
 
     private bool _isPatrol = true;
 
     private void Update()
     {
-        if (_chaser.IsChaser)
+        if (_targetDetector.IsDetected)
         {
-            _enemyMover.SetTarget(_chaser.Target);
+            _enemyMover.SetTarget(_targetDetector.Target);
 
             _isPatrol = false;
         }

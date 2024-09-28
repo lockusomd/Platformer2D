@@ -41,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3928941716372010030}
   - component: {fileID: 5430666896000276267}
-  - component: {fileID: 686231173360238857}
-  m_Layer: 3
+  - component: {fileID: 8537729312391678861}
+  m_Layer: 0
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ PolygonCollider2D:
       - {x: -0.058634575, y: 0.087557286}
       - {x: -0.17493607, y: 0.32290718}
   m_UseDelaunayMesh: 0
---- !u!114 &686231173360238857
+--- !u!114 &8537729312391678861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322592c4971fa4a9487d4155dada60ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMover: {fileID: 8721887228448507882}
+  _damager: {fileID: 2574864709221919156}
 --- !u!1 &7471672192178923778
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7405a92ec9da043d3830c5a155bfb093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blinker: {fileID: 2817944118517180168}
   _duration: 5
 --- !u!114 &2817944118517180168
 MonoBehaviour:
@@ -315,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ba768c08c79420c931ba4e687d6177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _invulner: {fileID: 4751714041601068251}
   _renderer: {fileID: 3020839426881675858}
   _oneBlinkDuration: 0.4
 --- !u!114 &3755476171460003123
@@ -330,9 +330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _invulner: {fileID: 4751714041601068251}
-  _minHealth: 0
-  _maxHealth: 100
-  _health: 50
+  _minQuantity: 0
+  _maxQuantity: 40
+  _quantity: 40
 --- !u!114 &1018410868573086011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyMover: {fileID: 8721887228448507882}
-  _chaser: {fileID: 686231173360238857}
+  _targetDetector: {fileID: 8537729312391678861}
 --- !u!114 &2574864709221919156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbfc92bbb9244830b318eeca453081a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
   _power: 10
+  _detectionRadius: 0.8
+  _offsetDistance: 0
 --- !u!114 &8721887228448507882
 MonoBehaviour:
   m_ObjectHideFlags: 0

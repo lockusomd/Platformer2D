@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Aid : MonoBehaviour
+public class Aid : PickupItem
 {
     [SerializeField] private int _health;
 
